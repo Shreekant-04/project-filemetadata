@@ -14,9 +14,9 @@ app.get("/", function (req, res) {
 });
 
 const multer = require('multer');
-const upload = multer({ dest: './public/data/uploads/' });
+const upload = multer();
 
-app.post('/api/fileanalyse', upload.single('file'), function (req, res) {
+app.post('/api/fileanalyse', upload.single('upfile'), function (req, res) {
    if (!req.file) {
        return res.status(400).send({ error: "No file uploaded" });
    }
