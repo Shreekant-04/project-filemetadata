@@ -16,18 +16,18 @@ app.get("/", function (req, res) {
   res.render("index");
 });
 
-const multer = require('multer');
+const multer = require("multer");
 const upload = multer();
 
-app.post('/api/fileanalyse', upload.single('upfile'), function (req, res) {
-   if (!req.file) {
-       return res.status(400).send({ error: "No file uploaded" });
-   }
-   res.send({
-       filename: req.file.originalname,
-       size: req.file.size,
-       mimetype: req.file.mimetype
-   });
+app.post("/api/fileanalyse", upload.single("upfile"), function (req, res) {
+  if (!req.file) {
+    return res.status(400).send({ error: "No file uploaded" });
+  }
+  res.send({
+    name: req.file.originalname,
+    type: req.file.mimetype,
+    size: req.file.size,
+  });
 });
 
 const port = process.env.PORT || 3000;
